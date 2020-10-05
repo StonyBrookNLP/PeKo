@@ -1,3 +1,5 @@
 theme: jekyll-theme-slate
 
 show_downloads: true
+github:
+  tar_url: https://github.com/StonyBrookNLP/PeKo/tree/main/data/peko_data.tgz 
