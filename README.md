@@ -1,12 +1,15 @@
-## Welcome to GitHub Pages
+# PeKo: Precondition Knowledge Dataset
 
-You can use the [editor on GitHub](https://github.com/StonyBrookNLP/PeKo/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Overview
+PeKo (**P**r**e**condition **K**n**o**wledge) is a large scale crowdsourced event precondition knowledge dataset introduced in our paper _Modeling Preconditions in Text with a Crowd-sourced Dataset_ at EMNLP Findings 2020 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Preprint coming soon.
 
-### Markdown
+## Crowdsourcing Precondition Knowledge
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Pipeline image
+
+HIT example
 
 ```markdown
 Syntax highlighted code block
