@@ -14,6 +14,19 @@ The annotators were presented with a text snippet and two event mentions highlig
   <img align="middle" src="images/mturk_example.png" alt="HIT example" width="400"/>
 </p>
 
+## Tasks
+We now propose two tasks that test for the ability to recognize and generate preconditions in textual contexts. Here we describe evaluations to benchmark the performance of current models on these tasks and to better understand the challenges involved.
+
+### PeKo Task 1: Precondition Identification
+Given a text snippet with a target and candidate event pair, the task is to classify if the candidate event is a precondition for the target in the context described by the text snippet. This is a standard sentence-level classification task.
+![Result Table](images/result_table.png)
+
+### PeKo Task 2: Precondition Generation Task
+
+## Download
+The dataset can be downloaded from [here](https://github.com/StonyBrookNLP/PeKo)
+
+
 ```markdown
 Syntax highlighted code block
 
