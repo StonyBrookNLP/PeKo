@@ -81,4 +81,4 @@ data
 - Anmol Shukla (Stony Brook University) 
 - Keerthi Kumar Kallur (Stony Brook University) 
 - [Nate Chambers](https://www.usna.edu/Users/cs/nchamber/) (US Naval Academy)
-- [Niranjan Balasubramanian](https://www3.cs.stonybrook.edu/~niranjan)
+- [Niranjan Balasubramanian](https://www3.cs.stonybrook.edu/~niranjan) (Stony Brook University)
