@@ -19,7 +19,9 @@ We now propose two tasks that test for the ability to recognize and generate pre
 
 ### PeKo Task 1: Precondition Identification
 Given a text snippet with a target and candidate event pair, the task is to classify if the candidate event is a precondition for the target in the context described by the text snippet. This is a standard sentence-level classification task.
-![Result Table](images/result_table.png)
+<p align="center">
+  <img align="middle" src="images/result_table.png" alt="Result Table" width="400"/>
+</p>
 
 ### PeKo Task 2: Precondition Generation Task
 
