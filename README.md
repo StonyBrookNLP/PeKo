@@ -7,11 +7,9 @@ Preprint coming soon.
 
 ## Crowdsourcing Precondition Knowledge
 
-Pipeline image
 ![Crowdsourcing Task](images/crowdsourcing.svg)
 
-HIT example
-![HIT example](images/mturk_example.png)
+![HIT example](images/mturk_example.png | witdth=100)
 
 ```markdown
 Syntax highlighted code block
