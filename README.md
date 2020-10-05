@@ -33,31 +33,44 @@ Here we introduce Precondition Generation as a more general challenge that a dat
 ## Download
 The dataset can be downloaded from [here](https://github.com/StonyBrookNLP/PeKo)
 
+## Citation
+Bibtex will be updated soon
+   ```
+   ```
 
-```markdown
-Syntax highlighted code block
+## Dataset Information
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
+data
+ ├── peko_all.jsonl             # PeKo dataset
+ ├── peko_gen_train.txt         # PeKo generation instances
+ ├── peko_gen_dev.txt
+ ├── peko_gen_test.txt
+ ├── temp_gen_train.txt         # Generation instances for temporal model
+ ├── temp_gen_dev.txt
+ ├── LM_gen_train.txt           # Generation instances for plain language model
+ ├── LM_gen_dev.txt
+ └── atomic_samples.txt         # ATOMIC samples for generation task
+```
+- peko_all.jsonl: PeKo dataset, each line contains a single json document.
+  - sent_id: sentence ID
+  - source: a candidate precondition event
+  - target: a target event
+  - label: 1 for precondition, 0 for non-precondition
+  - n_yes: the number of votes for precondition
+  - n_vote: the number of annotator
+  - sent: sentence(s), tokens are separated by space
+  
+ - {_peko/temp/LM_}\_gen\_\*.txt
+ 
+   Tab separated text files. The first column contains full text, which is used for the generation target and the second column contains a precondition-masked-out instance.
+ 
+ - atomic_samples.txt
+ 
+   The file contains generation seeds from ATOMIC dataset
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/StonyBrookNLP/PeKo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Contributors
+- [Heeyoung Kwon](https://heeyoungkwon.com) (Stony Brook University)
+- Mahnaz Koupaee (Stony Brook University)
+- [Nate Chambers](https://www.usna.edu/Users/cs/nchamber/) (US Naval Academy)
+- [Niranjan Balasubramanian](https://www3.cs.stonybrook.edu/~niranjan)
