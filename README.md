@@ -72,5 +72,9 @@ data
 ## Contributors
 - [Heeyoung Kwon](https://heeyoungkwon.com) (Stony Brook University)
 - Mahnaz Koupaee (Stony Brook University)
+- Pratyush Singh (Stony Brook University)
+- Gargi Sawhney (Stony Brook University) 
+- Anmol Shukla (Stony Brook University) 
+- Keerthi Kumar Kallur (Stony Brook University) 
 - [Nate Chambers](https://www.usna.edu/Users/cs/nchamber/) (US Naval Academy)
 - [Niranjan Balasubramanian](https://www3.cs.stonybrook.edu/~niranjan)
