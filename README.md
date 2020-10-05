@@ -9,7 +9,7 @@ Preprint coming soon.
 
 ![Crowdsourcing Task](images/crowdsourcing.svg)
 
-![HIT example](images/mturk_example.png | witdth=100)
+![HIT example](images/mturk_example.png | width=100)
 
 ```markdown
 Syntax highlighted code block
