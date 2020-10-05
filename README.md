@@ -24,6 +24,7 @@ Given a text snippet with a target and candidate event pair, the task is to clas
 </p>
 
 ### PeKo Task 2: Precondition Generation Task
+Here we introduce Precondition Generation as a more general challenge that a dataset like PeKo now enables. Given a target event `t`, generate an event `p` that is a precondition for `t`. We benchmark performance on evaluation instances drawn from both PeKo and an out-of-domain dataset [ATOMIC](https://homes.cs.washington.edu/~msap/atomic/).
 
 ## Download
 The dataset can be downloaded from [here](https://github.com/StonyBrookNLP/PeKo)
