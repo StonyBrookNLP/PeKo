@@ -1,7 +1,7 @@
 # PeKo: Precondition Knowledge Dataset
 
 ## Overview
-PeKo (**P**r**e**condition **K**n**o**wledge) is a large scale crowdsourced event precondition knowledge dataset introduced in our paper _Modeling Preconditions in Text with a Crowd-sourced Dataset_ at EMNLP Findings 2020 
+PeKo (**P**r**e**condition **K**n**o**wledge) is a large scale crowdsourced event precondition knowledge dataset introduced in our paper "_Modeling Preconditions in Text with a Crowd-sourced Dataset_" at EMNLP Findings 2020 
 
 Preprint coming soon.
 
