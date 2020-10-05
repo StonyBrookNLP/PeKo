@@ -14,6 +14,8 @@ The annotators were presented with a text snippet and two event mentions highlig
   <img align="middle" src="images/mturk_example.png" alt="HIT example" width="400"/>
 </p>
 
+As the result of crowdsouring, we have **10,806** preconditions out of **28,948** instances in total.
+
 ## Tasks
 We now propose two tasks that test for the ability to recognize and generate preconditions in textual contexts. Here we describe evaluations to benchmark the performance of current models on these tasks and to better understand the challenges involved.
 
