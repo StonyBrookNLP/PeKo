@@ -2,6 +2,11 @@ theme: jekyll-theme-cayman
 
 title: 'PeKo: A Large Scale Precondition Knowledge Dataset'
 
+tagline: PeKo | Precondition knowledge | Precondition dataset | Event precondition
+
 show_downloads: true
 github:
   tar_url: https://drive.google.com/file/d/1FmKcFjKmiT7xWou97xp4nxlNc4UBk8Lq/view?usp=sharing
+
+plugins:
+  - jekyll-seo-tag

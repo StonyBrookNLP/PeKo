@@ -1,3 +1,4 @@
+{% raw %}{% seo %}{% endraw %}
 # PeKo: A Large Scale Precondition Knowledge Dataset
 
 ## Overview
