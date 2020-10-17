@@ -38,8 +38,14 @@ Here we introduce Precondition Generation as a more general challenge that a dat
 The dataset can be downloaded from [here](https://drive.google.com/file/d/1FmKcFjKmiT7xWou97xp4nxlNc4UBk8Lq/view?usp=sharing)
 
 ## Citation
-Bibtex will be updated soon
+Please use the following bibtex entry:
    ```
+@article{kwon2020modeling,
+  title={Modeling Preconditions in Text with a Crowd-sourced Dataset},
+  author={Kwon, Heeyoung and Koupaee, Mahnaz and Singh, Pratyush and Sawhney, Gargi and Shukla, Anmol and Kallur, Keerthi Kumar and Chambers, Nathanael and Balasubramanian, Niranjan},
+  journal={arXiv preprint arXiv:2010.02429},
+  year={2020}
+}
    ```
 
 ## Dataset Information
