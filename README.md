@@ -35,7 +35,7 @@ Here we introduce Precondition Generation as a more general challenge that a dat
 
 
 ## Download
-The dataset can be downloaded from [here](https://drive.google.com/file/d/1FmKcFjKmiT7xWou97xp4nxlNc4UBk8Lq/view?usp=sharing)
+The dataset can be downloaded from [here](https://github.com/StonyBrookNLP/PeKo/blob/main/data/peko_data.tgz)
 
 ## Citation
 Please use the following bibtex entry:
