@@ -129,8 +129,8 @@ def load_data(filename, data_share):
             else:
                 neg_data.append(line_in)
 
-    pos_train, pos_dev, pos_test = split(pos_data)
-    neg_train, neg_dev, neg_test = split(neg_data)
+    pos_train, pos_dev, pos_test = split(pos_data, data_share)
+    neg_train, neg_dev, neg_test = split(neg_data, data_share)
     train = pos_train+neg_train
     dev = pos_dev+neg_dev
     test = pos_test+neg_test
