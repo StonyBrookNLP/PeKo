@@ -282,7 +282,7 @@ def train(args):
 
     # load transformer tokenizer, model
     model_name = 'bert-base-cased'
-    tokenizer = BertTokenizer.from_pretrained(model_name, pad_token='<PAD>')
+    tokenizer = BertTokenizer.from_pretrained(model_name)
     encoder = BertModel.from_pretrained(model_name)
 
     # apply tokenizer to data and re-align the token indices
