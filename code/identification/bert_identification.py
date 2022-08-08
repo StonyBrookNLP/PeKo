@@ -103,14 +103,19 @@ class Model(nn.Module):
         return self.softmax(logits)
 
 
-def load_data(filename):
+def load_data(filename, data_share):
 
-    def split(data):
+    def split(data, data_share: float):
         L = len(data)
         idx = np.random.permutation(L)
-        train = [data[i] for i in idx[:L//10*6]]
-        dev = [data[i] for i in idx[L//10*6:L//10*8]]
-        test = [data[i] for i in idx[L//10*8:]]
+        
+        train_i = int(L//10*6 * data_share)
+        dev_i = int(L//10*8 * data_share)
+        test_i = int(L * data_share)
+        
+        train = [data[i] for i in idx[:train_i]]
+        dev = [data[i] for i in idx[train_i:dev_i]]
+        test = [data[i] for i in idx[dev_i:test_i]]
 
         return train, dev, test
 
@@ -272,7 +277,7 @@ def train(args):
         os.makedirs(out_dir)
 
     # load data
-    data = load_data('../data/peko_all.jsonl')
+    data = load_data('../data/peko_all.jsonl', args.data_share)
     del data['test']
 
     # load transformer tokenizer, model
@@ -435,6 +440,8 @@ if __name__ == "__main__":
     parser.add_argument('--load_model', type=str, default=None)
     parser.add_argument('-ex', '--experiment', type=str, default='test')
     parser.add_argument('--test', action='store_true')
+    
+    parser.add_argument('-ds', '--data_share', type=float, default=1.0, help='the share of the data to use for training, evaluating; e.g. set to 0.01 for toy example')
 
     args = parser.parse_args()
 
