@@ -108,11 +108,11 @@ def load_data(filename, data_share):
     def split(data, data_share: float):
         L = len(data)
         idx = np.random.permutation(L)
-        
+
         train_i = int(L//10*6 * data_share)
         dev_i = int(L//10*8 * data_share)
         test_i = int(L * data_share)
-        
+
         train = [data[i] for i in idx[:train_i]]
         dev = [data[i] for i in idx[train_i:dev_i]]
         test = [data[i] for i in idx[dev_i:test_i]]
@@ -277,7 +277,7 @@ def train(args):
         os.makedirs(out_dir)
 
     # load data
-    data = load_data('../data/peko_all.jsonl', args.data_share)
+    data = load_data(args.data_file, args.data_share)
     del data['test']
 
     # load transformer tokenizer, model
@@ -395,9 +395,9 @@ def train(args):
     return
 
 
-def model_test(model_file):
+def model_test(args):
 
-    data = load_data('../data/peko_all.jsonl')
+    data = load_data(args.data_file, 1.0)
 
     model_name = 'bert-base-cased'
     tokenizer = BertTokenizer.from_pretrained(model_name, pad_token='<PAD>')
@@ -407,7 +407,7 @@ def model_test(model_file):
     for set_info, raw_data in data.items():
         paragraphs[set_info], relations[set_info], labels[set_info] = prepare(raw_data, tokenizer)
 
-    model = torch.load(model_file)
+    model = torch.load(args.load_model, map_location=torch.device('cpu'))
 
     if model.use_cuda:
         model.cuda()
@@ -440,7 +440,9 @@ if __name__ == "__main__":
     parser.add_argument('--load_model', type=str, default=None)
     parser.add_argument('-ex', '--experiment', type=str, default='test')
     parser.add_argument('--test', action='store_true')
-    
+
+    # data_file is type str to make this an easier change from existing code
+    parser.add_argument('-d', '--data_file', type=str, default='../data/peko_all.jsonl')
     parser.add_argument('-ds', '--data_share', type=float, default=1.0, help='the share of the data to use for training, evaluating; e.g. set to 0.01 for toy example')
 
     args = parser.parse_args()
@@ -451,6 +453,6 @@ if __name__ == "__main__":
     torch.cuda.manual_seed(args.seed)
 
     if args.test:
-        model_test(args.load_model)
+        model_test(args)
     else:
         train(args)
