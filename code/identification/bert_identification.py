@@ -398,6 +398,10 @@ def train(args):
 def model_test(args):
 
     data = load_data(args.data_file, 1.0)
+    data['test'].extend(data['train'])
+    data['test'].extend(data['dev'])
+    del data['train']
+    del data['dev']
 
     model_name = 'bert-base-cased'
     tokenizer = BertTokenizer.from_pretrained(model_name, pad_token='<PAD>')
