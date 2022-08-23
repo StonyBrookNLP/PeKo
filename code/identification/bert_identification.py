@@ -1,3 +1,5 @@
+from typing import List
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -195,6 +197,38 @@ def getScores(pred, label):
     return acc, precision, recall, f1
 
 
+def getHighPrecisionScores(pred: List[int], label):
+    """Get scores using high-precision method (only consider it a positive if all four permuted candidates for
+    a pair are in agreement.
+
+    :param pred: original example-level predictions (there should be 4 for every event pair)
+    :param label: original example-level labels (should be same length as pred)
+    """
+    A_REQ_FOR_B = [1, 0, 0, 1]
+    B_REQ_FOR_A = [0, 1, 1, 0]
+
+    hp_pred = []
+    hp_label = []
+    for chunk_start in range(0, len(pred), 4):
+        chunk_pred = pred[chunk_start: chunk_start + 4]
+        chunk_label = label[chunk_start: chunk_start + 4]
+
+        if chunk_label == A_REQ_FOR_B:
+            hp_label.extend([1, 0])
+        else:
+            # Sanity check; labels should imply A -> B, B <- A, or A <-> B
+            raise ValueError(f"Every 4-chunk should be consistent with A -> B, A <- B, or A <-> B; instead got:\n{chunk_label}")
+
+        if chunk_pred == A_REQ_FOR_B:
+            hp_pred.extend([1, 0])
+        elif chunk_pred == B_REQ_FOR_A:
+            hp_pred.extend([0, 1])
+        else:
+            hp_pred.extend([0, 0])
+
+    return getScores(hp_pred, hp_label)
+
+
 def test(model, test_para, test_relation, test_label, loss_function=None, pred_flag=False):
     total_loss = []
     model.eval()
@@ -218,7 +252,10 @@ def test(model, test_para, test_relation, test_label, loss_function=None, pred_f
 
         pred.extend(torch.argmax(score, dim=-1).cpu().tolist())
 
-    acc, precision, recall, f1 = getScores(pred, test_label)
+    if args.high_precision:
+        acc, precision, recall, f1 = getHighPrecisionScores(pred, test_label)
+    else:
+        acc, precision, recall, f1 = getScores(pred, test_label)
 
     if loss_function is not None:
         print("\t\tLoss: {:0.5f}".format(sum(total_loss)/len(total_loss)))
@@ -444,6 +481,7 @@ if __name__ == "__main__":
     parser.add_argument('--load_model', type=str, default=None)
     parser.add_argument('-ex', '--experiment', type=str, default='test')
     parser.add_argument('--test', action='store_true')
+    parser.add_argument('--high_precision', help='infer using the high-precision mode (a, b, c, & d must agree)', action='store_true')
 
     # data_file is type str to make this an easier change from existing code
     parser.add_argument('-d', '--data_file', type=str, default='../data/peko_all.jsonl')
