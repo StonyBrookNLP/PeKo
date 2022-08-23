@@ -105,11 +105,11 @@ class Model(nn.Module):
         return self.softmax(logits)
 
 
-def load_data(filename, data_share):
+def load_data(filename, data_share, shuffle: bool = True):
 
-    def split(data, data_share: float):
+    def split(data, data_share: float, shuffle: bool):
         L = len(data)
-        idx = np.random.permutation(L)
+        idx = np.random.permutation(L) if shuffle else np.arange(L)
 
         train_i = int(L//10*6 * data_share)
         dev_i = int(L//10*8 * data_share)
@@ -121,25 +121,32 @@ def load_data(filename, data_share):
 
         return train, dev, test
 
-    pos_data = []
-    neg_data = []
-    with open(filename, "r") as fin:
-        for line in fin:
-            line_in = json.loads(line.strip())
-            if line_in['label'] == 1:
-                pos_data.append(line_in)
-            else:
-                neg_data.append(line_in)
+    # Hack: non-shuffle mode to keep original order
+    if shuffle:
+        pos_data = []
+        neg_data = []
+        with open(filename, "r") as fin:
+            for line in fin:
+                line_in = json.loads(line.strip())
+                if line_in['label'] == 1:
+                    pos_data.append(line_in)
+                else:
+                    neg_data.append(line_in)
+        pos_train, pos_dev, pos_test = split(pos_data, data_share, shuffle=True)
+        neg_train, neg_dev, neg_test = split(neg_data, data_share, shuffle=True)
+        train, dev, test = pos_train+neg_train, pos_dev+neg_dev, pos_test+neg_test
+    else:
+        data = []
+        with open(filename, "r") as fin:
+            for line in fin:
+                line_in = json.loads(line.strip())
+                data.append(line_in)
+        train, dev, test = split(data, data_share, shuffle=shuffle)
 
-    pos_train, pos_dev, pos_test = split(pos_data, data_share)
-    neg_train, neg_dev, neg_test = split(neg_data, data_share)
-    train = pos_train+neg_train
-    dev = pos_dev+neg_dev
-    test = pos_test+neg_test
-
-    train = [train[i] for i in np.random.permutation(len(train))]
-    dev = [dev[i] for i in np.random.permutation(len(dev))]
-    test = [test[i] for i in np.random.permutation(len(test))]
+    if shuffle:
+        train = [train[i] for i in np.random.permutation(len(train))]
+        dev = [dev[i] for i in np.random.permutation(len(dev))]
+        test = [test[i] for i in np.random.permutation(len(test))]
 
     return {'train': train, 'dev': dev, 'test': test}
 
@@ -434,9 +441,12 @@ def train(args):
 
 def model_test(args):
 
-    data = load_data(args.data_file, 1.0)
-    data['test'].extend(data['train'])
-    data['test'].extend(data['dev'])
+    # Hack: we have to concatenate the different splits back together in
+    # this particular way to preserve the original order
+    data = load_data(args.data_file, data_share=1.0, shuffle=False)
+    data['train'].extend(data['dev'])
+    data['train'].extend(data['test'])
+    data['test'] = data['train']
     del data['train']
     del data['dev']
 
